@@ -183,11 +183,18 @@
         }
 
         .star {
-            font-size: 30px;
-            line-height: 1;
+            display: inline-flex;
             cursor: pointer;
             transition: transform 0.15s, color 0.15s;
             color: var(--line);
+            border-radius: 3px;
+        }
+
+        .star svg {
+            width: 30px;
+            height: 30px;
+            display: block;
+            fill: currentColor;
         }
 
         .star:hover,
@@ -197,6 +204,11 @@
 
         .star:hover {
             transform: translateY(-2px);
+        }
+
+        .star:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
         }
 
         .checkbox-label {
@@ -326,11 +338,11 @@
             <div class="rating-group">
                 <span class="rating-label">&iquest;Qu&eacute; calificaci&oacute;n nos das?</span>
                 <div class="stars" id="ratingStars" role="radiogroup" aria-label="Calificaci&oacute;n de 1 a 5 estrellas">
-                    <span class="star" data-rating="1" role="radio" aria-checked="false" tabindex="0" aria-label="1 estrella">&#9733;</span>
-                    <span class="star" data-rating="2" role="radio" aria-checked="false" tabindex="0" aria-label="2 estrellas">&#9733;</span>
-                    <span class="star" data-rating="3" role="radio" aria-checked="false" tabindex="0" aria-label="3 estrellas">&#9733;</span>
-                    <span class="star" data-rating="4" role="radio" aria-checked="false" tabindex="0" aria-label="4 estrellas">&#9733;</span>
-                    <span class="star" data-rating="5" role="radio" aria-checked="false" tabindex="0" aria-label="5 estrellas">&#9733;</span>
+                    <span class="star" data-rating="1" role="radio" aria-checked="false" tabindex="0" aria-label="1 estrella"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.06 6.6.86-4.86 4.54 1.24 6.54L12 18.3l-5.88 3.7 1.24-6.54L2.5 9.42l6.6-.86L12 2.5z"/></svg></span>
+                    <span class="star" data-rating="2" role="radio" aria-checked="false" tabindex="0" aria-label="2 estrellas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.06 6.6.86-4.86 4.54 1.24 6.54L12 18.3l-5.88 3.7 1.24-6.54L2.5 9.42l6.6-.86L12 2.5z"/></svg></span>
+                    <span class="star" data-rating="3" role="radio" aria-checked="false" tabindex="0" aria-label="3 estrellas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.06 6.6.86-4.86 4.54 1.24 6.54L12 18.3l-5.88 3.7 1.24-6.54L2.5 9.42l6.6-.86L12 2.5z"/></svg></span>
+                    <span class="star" data-rating="4" role="radio" aria-checked="false" tabindex="0" aria-label="4 estrellas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.06 6.6.86-4.86 4.54 1.24 6.54L12 18.3l-5.88 3.7 1.24-6.54L2.5 9.42l6.6-.86L12 2.5z"/></svg></span>
+                    <span class="star" data-rating="5" role="radio" aria-checked="false" tabindex="0" aria-label="5 estrellas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.06 6.6.86-4.86 4.54 1.24 6.54L12 18.3l-5.88 3.7 1.24-6.54L2.5 9.42l6.6-.86L12 2.5z"/></svg></span>
                 </div>
                 <input type="hidden" id="rating" name="rating" value="0">
             </div>
