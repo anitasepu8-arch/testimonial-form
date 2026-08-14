@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Testimonio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #2a2320;
+            --muted: #8a7f79;
+            --line: #e7ded6;
+            --paper: #fbf8f4;
+            --card: #ffffff;
+            --accent: #9c5b4a;
+            --accent-soft: #f2e7e2;
+            --gold: #c99a3f;
+            --radius: 4px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background-color: var(--paper);
+            background-image:
+                radial-gradient(circle at 15% 0%, rgba(156, 91, 74, 0.06), transparent 45%),
+                radial-gradient(circle at 100% 100%, rgba(201, 154, 63, 0.07), transparent 40%);
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 48px 20px;
+            line-height: 1.55;
+        }
+
+        .container {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: 0 1px 2px rgba(42, 35, 32, 0.04), 0 24px 60px -30px rgba(42, 35, 32, 0.25);
+            max-width: 560px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header {
+            padding: 44px 44px 32px;
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+
+        .eyebrow {
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .header h1 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 500;
+            font-size: 38px;
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            margin-bottom: 12px;
+        }
+
+        .header p {
+            color: var(--muted);
+            font-size: 15px;
+            max-width: 40ch;
+        }
+
+        form {
+            padding: 36px 44px 44px;
+        }
+
+        .form-group {
+            margin-bottom: 26px;
+        }
+
+        label,
+        .rating-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            margin-bottom: 9px;
+            color: var(--ink);
+        }
+
+        .question-label {
+            font-family: 'Fraunces', Georgia, serif;
+            font-weight: 500;
+            font-size: 17px;
+            line-height: 1.35;
+        }
+
+        .optional {
+            color: var(--muted);
+            font-weight: 400;
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 13px 14px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 15px;
+            color: var(--ink);
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #b7ada6;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            background: var(--card);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-soft);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 96px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 34px 0 28px;
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+        }
+
+        .rating-group {
+            margin-bottom: 30px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 8px;
+        }
+
+        .star {
+            font-size: 30px;
+            line-height: 1;
+            cursor: pointer;
+            transition: transform 0.15s, color 0.15s;
+            color: var(--line);
+        }
+
+        .star:hover,
+        .star.active {
+            color: var(--gold);
+        }
+
+        .star:hover {
+            transform: translateY(-2px);
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            color: var(--muted);
+            font-size: 13px;
+            cursor: pointer;
+            font-weight: 400;
+            line-height: 1.5;
+            padding: 14px;
+            background: var(--accent-soft);
+            border-radius: var(--radius);
+        }
+
+        input[type="checkbox"] {
+            cursor: pointer;
+            width: 17px;
+            height: 17px;
+            margin-top: 1px;
+            accent-color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 34px;
+        }
+
+        button {
+            padding: 14px 20px;
+            border: none;
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-submit {
+            flex: 1;
+            background: var(--accent);
+            color: #fff;
+            letter-spacing: 0.01em;
+        }
+
+        .btn-submit:hover {
+            background: #834537;
+            box-shadow: 0 8px 22px -10px rgba(156, 91, 74, 0.7);
+        }
+
+        .btn-reset {
+            background: transparent;
+            color: var(--muted);
+            border: 1px solid var(--line);
+        }
+
+        .btn-reset:hover {
+            border-color: var(--muted);
+            color: var(--ink);
+        }
+
+        .success-message {
+            display: none;
+            align-items: center;
+            gap: 10px;
+            background: #eef4ec;
+            color: #3d6b46;
+            padding: 15px 18px;
+            border-radius: var(--radius);
+            margin: 36px 44px -8px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1px solid #d3e4d0;
+        }
+
+        .success-message.show {
+            display: flex;
+        }
+
+        @media (max-width: 520px) {
+            body { padding: 24px 14px; }
+            .header { padding: 34px 26px 26px; }
+            .header h1 { font-size: 30px; }
+            form { padding: 30px 26px 34px; }
+            .form-row { grid-template-columns: 1fr; }
+            .success-message { margin: 26px 26px -8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-message" id="successMessage" role="status">
+            <span aria-hidden="true">&#10003;</span>
+            <span>Gracias por tu tiempo. Tu testimonio se envi&oacute; correctamente.</span>
+        </div>
+
+        <header class="header">
+            <p class="eyebrow">Tu experiencia</p>
+            <h1>Cu&eacute;ntame tu historia</h1>
+            <p>Tu opini&oacute;n es lo que da forma a este trabajo. Comp&aacute;rtela con calma &mdash; no hay respuestas correctas.</p>
+        </header>
+
+        <form id="testimonialForm">
+            <!-- Nombre -->
+            <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+            </div>
+
+            <!-- Email y Telefono -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email <span class="optional">opcional</span></label>
+                    <input type="email" id="email" name="email" placeholder="tu@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Tel&eacute;fono <span class="optional">opcional</span></label>
+                    <input type="text" id="phone" name="phone" placeholder="+34 123 456 789">
+                </div>
+            </div>
+
+            <!-- Rating -->
+            <div class="rating-group">
+                <span class="rating-label">&iquest;Qu&eacute; calificaci&oacute;n nos das?</span>
+                <div class="stars" id="ratingStars" role="radiogroup" aria-label="Calificaci&oacute;n de 1 a 5 estrellas">
+                    <span class="star" data-rating="1" role="radio" aria-checked="false" tabindex="0" aria-label="1 estrella">&#9733;</span>
+                    <span class="star" data-rating="2" role="radio" aria-checked="false" tabindex="0" aria-label="2 estrellas">&#9733;</span>
+                    <span class="star" data-rating="3" role="radio" aria-checked="false" tabindex="0" aria-label="3 estrellas">&#9733;</span>
+                    <span class="star" data-rating="4" role="radio" aria-checked="false" tabindex="0" aria-label="4 estrellas">&#9733;</span>
+                    <span class="star" data-rating="5" role="radio" aria-checked="false" tabindex="0" aria-label="5 estrellas">&#9733;</span>
+                </div>
+                <input type="hidden" id="rating" name="rating" value="0">
+            </div>
+
+            <div class="divider">En tus palabras</div>
+
+            <!-- Pregunta 1 -->
+            <div class="form-group">
+                <label class="question-label" for="problem">&iquest;Cu&aacute;l era tu principal problema o necesidad antes de trabajar conmigo?</label>
+                <textarea id="problem" name="problem" placeholder="Describe brevemente..." required></textarea>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="form-group">
+                <label class="question-label" for="solution">&iquest;C&oacute;mo cambi&oacute; tu situaci&oacute;n despu&eacute;s de trabajar conmigo?</label>
+                <textarea id="solution" name="solution" placeholder="Cu&eacute;ntanos los resultados..." required></textarea>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="form-group">
+                <label class="question-label" for="highlight">&iquest;Qu&eacute; aspecto valoraste m&aacute;s de nuestro trabajo juntas?</label>
+                <textarea id="highlight" name="highlight" placeholder="Lo que m&aacute;s te gust&oacute;..."></textarea>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="form-group">
+                <label class="question-label" for="recommend">&iquest;A qui&eacute;n le recomendar&iacute;as mi servicio?</label>
+                <input type="text" id="recommend" name="recommend" placeholder="Ej: emprendedoras, mujeres de negocio...">
+            </div>
+
+            <!-- Autorizacion -->
+            <div class="form-group">
+                <label class="checkbox-label" for="authorize">
+                    <input type="checkbox" id="authorize" name="authorize" required>
+                    <span>Autorizo que mi testimonio sea usado en redes sociales y web.</span>
+                </label>
+            </div>
+
+            <!-- Botones -->
+            <div class="button-group">
+                <button type="reset" class="btn-reset">Limpiar</button>
+                <button type="submit" class="btn-submit">Enviar testimonio</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Rating Stars (click + teclado)
+        const stars = document.querySelectorAll('.star');
+        const ratingInput = document.getElementById('rating');
+
+        function setRating(rating) {
+            ratingInput.value = rating;
+            stars.forEach(s => {
+                const active = Number(s.dataset.rating) <= Number(rating);
+                s.classList.toggle('active', active);
+                s.setAttribute('aria-checked', String(Number(s.dataset.rating) === Number(rating)));
+            });
+        }
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => setRating(star.dataset.rating));
+            star.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setRating(star.dataset.rating);
+                }
+            });
+        });
+
+        // Envio del formulario
+        const form = document.getElementById('testimonialForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formDataObj = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                rating: document.getElementById('rating').value,
+                problem: document.getElementById('problem').value,
+                solution: document.getElementById('solution').value,
+                highlight: document.getElementById('highlight').value,
+                recommend: document.getElementById('recommend').value,
+                date: new Date().toLocaleDateString('es-ES')
+            };
+
+            fetch('https://formspree.io/f/mwleqapv', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formDataObj)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        successMessage.classList.add('show');
+                        form.reset();
+                        setRating(0);
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        setTimeout(() => successMessage.classList.remove('show'), 5000);
+                    } else {
+                        alert('Hubo un error al enviar el testimonio. Por favor intenta de nuevo.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error de conexi\u00f3n. Por favor verifica tu conexi\u00f3n a internet.');
+                });
+        });
+    </script>
+</body>
+</html>
